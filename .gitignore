@@ -1,0 +1,6 @@
+*.json
+*.mp3
+fma_metadata/
+fma_small/
+venv/
+*.wav
