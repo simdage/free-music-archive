@@ -4,10 +4,16 @@ import math
 import librosa
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
+from tqdm import tqdm
+
 
 SAMPLE_RATE = 22050
 TRACK_DURATION = 30  # measured in seconds
 SAMPLES_PER_TRACK = SAMPLE_RATE * TRACK_DURATION
+
+
+def add(x,y):
+    return x+y
 
 
 def process_metadata():
@@ -48,7 +54,7 @@ def save_mfcc(num_mfcc: int = 13, n_fft: int = 2048, hop_length: int = 512, num_
 
         df_i = tracks[tracks["split"] == split].reset_index()
 
-        for i, row in df_i.iloc[0: 100, :].iterrows():
+        for i, row in tqdm(df_i.iterrows()):
             # semantic_label = row["genre_top"]
             # data["mapping"].append(semantic_label)
 
@@ -72,7 +78,7 @@ def save_mfcc(num_mfcc: int = 13, n_fft: int = 2048, hop_length: int = 512, num_
                         data["mfcc"].append(mfcc.tolist())
                         data["labels"].append(row["genre_label"])
 
-            except FileNotFoundError:
+            except FileNotFoundError as e:
                 continue
 
         json_path = f"{split}_data_fma_small.json"
