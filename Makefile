@@ -10,6 +10,6 @@ format:
 	black *.py
 
 lint:
-	pylint main.py
+	pylint extract_data.py
 
 all: install lint test
