@@ -88,5 +88,5 @@ def save_mfcc(num_mfcc: int = 13, n_fft: int = 2048, hop_length: int = 512, num_
             json.dump(data, fp, indent=4)
 
 
-if __name__ == "__main__":
-    save_mfcc(num_segments=10)
+# if __name__ == "__main__":
+#     save_mfcc(num_segments=10)
